@@ -34,4 +34,4 @@ def parseXml(xmlFile):
 xmlFile = "English-Yusuf-Ali.xml"
 docs = parseXml(xmlFile)
 
-print(docs[0])
+print(docs[1])
