@@ -46,12 +46,17 @@ def clean(docs):
     """
     stop = set(stopwords.words('english'))
     punc = set(string.punctuation)
+    moreStop = ["allah", "ye", "shall", "lord", "thee", "thy", "thou", "say", "said", "us", "indeed", "may", "hath"]
+    morePunc = ["\'\'", "``"]
 
     cleanDocs = []
     for doc in docs:
-        tokenized = word_tokenize(doc)
-        stopFree = [word for word in tokenized if word.lower() not in stop]
+        lower = doc.lower()
+        tokenized = word_tokenize(lower)
+        stopFree = [word for word in tokenized if word not in stop]
+        stopFree = [word for word in stopFree if word not in moreStop]
         puncFree = [word for word in stopFree if word not in punc]
+        puncFree = [word for word in puncFree if word not in morePunc]
         cleanDocs.append(puncFree)
 
     return(cleanDocs)
@@ -66,7 +71,7 @@ def applyLDA(cleanDocs):
     """
     dictionary = corpora.Dictionary(cleanDocs)
     corpus = [dictionary.doc2bow(doc) for doc in cleanDocs]
-    model = gensim.models.ldamodel.LdaModel(corpus, num_topics = 20, id2word = dictionary)
+    model = gensim.models.ldamodel.LdaModel(corpus, num_topics = 15, id2word = dictionary, passes = 30)
 
     return(model)
 
@@ -76,4 +81,6 @@ docs = parseXml(xmlFile)
 cleanDocs = clean(docs)
 model = applyLDA(cleanDocs)
 
-print(model.print_topics(num_topics = 10, num_words = 10))
+topics = model.print_topics(num_topics = 15, num_words = 8)
+for topic in topics:
+    print(topic)

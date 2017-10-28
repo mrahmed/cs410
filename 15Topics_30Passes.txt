@@ -1,0 +1,17 @@
+using [num_topics = 15, passes = 30]
+
+(0, '0.009*"believe" + 0.008*"one" + 0.008*"faith" + 0.007*"fear" + 0.007*"people" + 0.007*"things" + 0.006*"know" + 0.006*"among"')
+(1, '0.012*"joseph" + 0.012*"one" + 0.010*"father" + 0.006*"know" + 0.006*"take" + 0.006*"brother" + 0.005*"full" + 0.005*"good"')
+(2, '0.011*"night" + 0.006*"day" + 0.006*"prayer" + 0.006*"therefore" + 0.005*"messenger" + 0.005*"allah´s" + 0.005*"doth" + 0.005*"qur´an"')
+(3, '0.016*"people" + 0.011*"moses" + 0.010*"day" + 0.007*"signs" + 0.006*"sent" + 0.006*"pharaoh" + 0.006*"verily" + 0.006*"fear"')
+(4, '0.016*"day" + 0.013*"signs" + 0.010*"earth" + 0.007*"judgment" + 0.007*"worship" + 0.006*"people" + 0.006*"know" + 0.005*"power"')
+(5, '0.009*"earth" + 0.009*"believe" + 0.008*"one" + 0.008*"day" + 0.007*"things" + 0.007*"people" + 0.007*"signs" + 0.007*"men"')
+(6, '0.002*"one" + 0.002*"like" + 0.002*"unto" + 0.002*"none" + 0.002*"eternal" + 0.002*"begotten" + 0.002*"absolute" + 0.002*"begetteth"')
+(7, '0.010*"one" + 0.007*"earth" + 0.007*"day" + 0.007*"deny" + 0.007*"favours" + 0.006*"made" + 0.006*"gracious" + 0.006*"come"')
+(8, '0.004*"give" + 0.004*"found" + 0.004*"guardian-lord" + 0.004*"orphan" + 0.003*"glorious" + 0.002*"security" + 0.002*"come" + 0.002*"created"')
+(9, '0.010*"one" + 0.010*"people" + 0.009*"believe" + 0.008*"among" + 0.006*"messenger" + 0.006*"men" + 0.006*"sent" + 0.005*"faith"')
+(10, '0.014*"messenger" + 0.012*"day" + 0.008*"believe" + 0.007*"truth" + 0.006*"among" + 0.006*"evil" + 0.006*"men" + 0.005*"believers"')
+(11, '0.015*"day" + 0.007*"sent" + 0.007*"man" + 0.007*"one" + 0.006*"things" + 0.006*"made" + 0.005*"give" + 0.005*"make"')
+(12, '0.011*"men" + 0.008*"faith" + 0.008*"women" + 0.008*"believe" + 0.007*"messenger" + 0.007*"unbelievers" + 0.007*"prophet" + 0.007*"day"')
+(13, '0.009*"garden" + 0.008*"morning" + 0.006*"verily" + 0.005*"day" + 0.005*"would" + 0.004*"one" + 0.004*"people" + 0.004*"men"')
+(14, '0.009*"one" + 0.006*"day" + 0.006*"let" + 0.006*"moses" + 0.006*"earth" + 0.005*"order" + 0.005*"man" + 0.005*"best"')
