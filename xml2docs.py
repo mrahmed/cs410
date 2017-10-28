@@ -1,4 +1,7 @@
 import xml.etree.ElementTree as ET
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+import string
 
 def parseXml(xmlFile):
     """
@@ -26,12 +29,34 @@ def parseXml(xmlFile):
 	    doc = "".join(child.itertext())
 	    doc = doc.replace("\n", "")
 	    doc = doc.replace("\t", "")
+	    doc = doc.replace(".", ". ")
 
 	    docs.append(doc)
     return(docs)
 
 
+def clean(docs):
+    """
+    To clean the documents:
+        - Tokenize each document
+        - Remove stop words from each document
+    """
+    stop = set(stopwords.words('english'))
+    punc = set(string.punctuation)
+
+    cleanDocs = []
+    for doc in docs:
+        tokenized = word_tokenize(doc)
+        stopFree = [word for word in tokenized if word.lower() not in stop]
+        puncFree = [word for word in stopFree if word not in punc]
+        cleanDocs.append(puncFree)
+
+    return(cleanDocs)
+
+
 xmlFile = "English-Yusuf-Ali.xml"
 docs = parseXml(xmlFile)
+cleanDocs = clean(docs)
 
 print(docs[0])
+print(cleanDocs[0])
