@@ -1,6 +1,8 @@
 import xml.etree.ElementTree as ET
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from gensim import corpora, models
+import gensim
 import string
 
 def parseXml(xmlFile):
@@ -55,13 +57,23 @@ def clean(docs):
     return(cleanDocs)
 
 
+def applyLDA(cleanDocs):
+    """
+    Apply the model to the data:
+        - Construct doc-term matrix
+        - Convert dictionary into bag-of-words
+        - Apply the LDA model
+    """
+    dictionary = corpora.Dictionary(cleanDocs)
+    corpus = [dictionary.doc2bow(doc) for doc in cleanDocs]
+    model = gensim.models.ldamodel.LdaModel(corpus, num_topics = 20, id2word = dictionary)
+
+    return(model)
+
+
 xmlFile = "English-Yusuf-Ali.xml"
 docs = parseXml(xmlFile)
 cleanDocs = clean(docs)
+model = applyLDA(cleanDocs)
 
-<<<<<<< HEAD
-print(docs[0])
-print(cleanDocs[0])
-=======
-print(docs[1])
->>>>>>> 9227cd406fbddb3846d8354442ce9ea35c5ddda3
+print(model.print_topics(num_topics = 10, num_words = 10))
