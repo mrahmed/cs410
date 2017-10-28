@@ -58,5 +58,9 @@ xmlFile = "English-Yusuf-Ali.xml"
 docs = parseXml(xmlFile)
 cleanDocs = clean(docs)
 
+<<<<<<< HEAD
 print(docs[0])
 print(cleanDocs[0])
+=======
+print(docs[1])
+>>>>>>> 9227cd406fbddb3846d8354442ce9ea35c5ddda3
