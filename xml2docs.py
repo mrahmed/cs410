@@ -40,6 +40,7 @@ def clean(docs):
     To clean the documents:
         - Tokenize each document
         - Remove stop words from each document
+        - Remove punctuation
     """
     stop = set(stopwords.words('english'))
     punc = set(string.punctuation)
