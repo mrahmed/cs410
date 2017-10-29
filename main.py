@@ -32,7 +32,8 @@ def parseXml(xmlFile):
 	    doc = "".join(child.itertext())
 	    doc = doc.replace("\n", "")
 	    doc = doc.replace("\t", "")
-	    doc = doc.replace(".", ". ")
+	    doc = doc.replace(".", ". ") # add spacing to separate words
+	    doc = doc.replace(";", "; ")
 
 	    docs.append(doc)
     return(docs)
@@ -70,14 +71,14 @@ docs.insert(0, "")# #shift index to match with chapter index
 orignalDoc = []
 #chapter index. Used to restrict output to one chapter so can visually check cleaned doc. once confortable
 # then build the corpus
-i = 112 # change it for different chapter and visually impact the clean document
+i = 114 # change it for different chapter and visually impact the clean document
 orignalDoc = docs[i].split()
 cleanDoc = clean(docs[i])
 cleanDoc = cleanDoc[1:] # remove first element which is index
 diff = [x for x in orignalDoc if x.lower() not in cleanDoc]
-print (orignalDoc)
+#print (orignalDoc)
 print(cleanDoc)
-print(diff)
+#print(diff)
 
 """
 1-Al-Fatihah 2-Al-Baqarah 3-Al-'Imran 4-An-Nisa' 5-Al-Ma'idah 6-Al-An'am 7-Al-A'raf 8-Al-Anfal 9-Al-Bara'at / At-Taubah 10-Yunus 11-Hud 12-Yusuf 13-Ar-
@@ -92,4 +93,3 @@ Tariq 87-Al-A'la 88-Al-Ghashiyah 89-Al-Fajr 90-Al-Balad 91-Ash-Shams 92-Al-Lail 
 110-An-Nasr 111-Al-Lahab 112-Al-Ikhlas 113-Al-Falaq 114-An-Nas
 
 """
-

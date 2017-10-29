@@ -45,23 +45,24 @@ def clean(docs):
         - Remove stop words from each document
         - Remove punctuation
     """
-    stop = set(stopwords.words('english'))
+    stop = set(stopwords.words('english')) #stop words
     punc = set(string.punctuation)
     moreStop = ["allah", "ye", "shall", "lord", "thee", "thy", "thou", "say", "said", "us", "indeed", "may", "hath"]
-    morePunc = ["\'\'", "``"]
+    for word in moreStop:
+        stop.add(word) #add more stop words
 
-    cleanDocs = []
     # https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
     regex = re.compile('[%s]' % re.escape("!\"#$%&()*+,-./:;<=>?@[\]^_`{|}~"))
+
+    cleanDocs = []
     for doc in docs:
-        lower = doc.lower()
-        tokenized = word_tokenize(lower)
-        stopFree = [word for word in tokenized if word not in stop]
-        stopFree = [word for word in stopFree if word not in moreStop]
-        puncFree = [word for word in stopFree if word not in punc]
-        puncFree = [word for word in puncFree if word not in morePunc]
-        puncFree = [word for word in puncFree if word in regex.sub('', word)]
-        cleanDocs.append(puncFree)
+        cleanDoc = doc.lower()  # convert to lower
+        cleanDoc = regex.sub('', cleanDoc) #remove punctuation
+        cleanDoc = ''.join(i for i in cleanDoc if not i.isdigit()) #remove remove any digit
+        cleanDoc = cleanDoc.split() #split into list
+        cleanDoc = [word for word in cleanDoc if word not in stop]
+        cleanDoc = [word for word in cleanDoc if word not in punc]
+        cleanDocs.append(cleanDoc)
 
     return(cleanDocs)
 
@@ -83,12 +84,8 @@ def applyLDA(cleanDocs):
 xmlFile = "English-Yusuf-Ali.xml"
 docs = parseXml(xmlFile)
 cleanDocs = clean(docs)
-print(cleanDocs)
-
 model = applyLDA(cleanDocs)
 
 topics = model.print_topics(num_topics = 15, num_words = 8)
 for topic in topics:
     print(topic)
-
-
