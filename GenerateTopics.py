@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 from gensim import corpora, models
 import gensim
 import string
+import re
 
 def parseXml(xmlFile):
     """
@@ -50,6 +51,8 @@ def clean(docs):
     morePunc = ["\'\'", "``"]
 
     cleanDocs = []
+    # https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
+    regex = re.compile('[%s]' % re.escape("!\"#$%&()*+,-./:;<=>?@[\]^_`{|}~"))
     for doc in docs:
         lower = doc.lower()
         tokenized = word_tokenize(lower)
@@ -57,6 +60,7 @@ def clean(docs):
         stopFree = [word for word in stopFree if word not in moreStop]
         puncFree = [word for word in stopFree if word not in punc]
         puncFree = [word for word in puncFree if word not in morePunc]
+        puncFree = [word for word in puncFree if word in regex.sub('', word)]
         cleanDocs.append(puncFree)
 
     return(cleanDocs)
@@ -79,8 +83,12 @@ def applyLDA(cleanDocs):
 xmlFile = "English-Yusuf-Ali.xml"
 docs = parseXml(xmlFile)
 cleanDocs = clean(docs)
+print(cleanDocs)
+
 model = applyLDA(cleanDocs)
 
 topics = model.print_topics(num_topics = 15, num_words = 8)
 for topic in topics:
     print(topic)
+
+
