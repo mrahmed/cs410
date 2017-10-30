@@ -48,36 +48,35 @@ def clean(doc):
     """
     i = 0
     stop = set(stopwords.words('english')) #stop words
+    allow = ["all","lord","your"]
     punc = set(string.punctuation)
-    moreStop = ["allah", "ye", "shall", "lord", "thee", "thy", "thou", "say", "said", "us", "indeed", "may", "hath"]
+    moreStop = ["ye", "shall", "thee", "thy", "thou", "say", "said", "us", "indeed", "may", "hath"]
     for word in moreStop:
         stop.add(word) #add more stop words
 
     # https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
     regex = re.compile('[%s]' % re.escape("!\"#$%&()*+,./:;<=>?@[\]^_`{|}~"))
     cleanDoc = doc.lower()  # convert to lower
+    cleanDoc = re.sub('(?<! )(?=[.,;!?()])|(?<=[.,;!?()])(?! )', r' ', cleanDoc)
     cleanDoc = regex.sub('', cleanDoc) #remove punctuation
     cleanDoc = ''.join(i for i in cleanDoc if not i.isdigit()) #remove remove any digit
     cleanDoc = cleanDoc.split() #split into list
-    cleanDoc = [word for word in cleanDoc if word not in stop]
+    cleanDoc = [word for word in cleanDoc if (word not in stop or word in allow)]
     cleanDoc = [word for word in cleanDoc if word not in punc]
-
     return(cleanDoc)
-
 xmlFile = "English-Yusuf-Ali.xml"
 docs = parseXml(xmlFile)
 docs.insert(0, "")# #shift index to match with chapter index
-orignalDoc = []
-#chapter index. Used to restrict output to one chapter so can visually check cleaned doc. once confortable
-# then build the corpus
-i = 112 # change it for different chapter and visually impact the clean document
-orignalDoc = docs[i].split()
-cleanDoc = clean(docs[i])
-cleanDoc = cleanDoc[1:] # remove first element which is index
-diff = [x for x in orignalDoc if x.lower() not in cleanDoc]
-print (orignalDoc)
-print(cleanDoc)
-print(diff)
+cleanDocs= []
+for x in range(1, 114):
+    cleanDoc = clean(docs[x])
+    cleanDoc = cleanDoc[1:]  # remove first element which is index
+    cleanDocs.extend(cleanDoc)
+n = 10.0 # number of chunks to generate
+chunk = int(round(len(cleanDocs)/n))
+chunks = [cleanDocs[i:i+chunk] for i in range(0,len(cleanDocs),chunk)]
+#print(cleanDocs)
+print(chunks)
 
 """
 1-Al-Fatihah 2-Al-Baqarah 3-Al-'Imran 4-An-Nisa' 5-Al-Ma'idah 6-Al-An'am 7-Al-A'raf 8-Al-Anfal 9-Al-Bara'at / At-Taubah 10-Yunus 11-Hud 12-Yusuf 13-Ar-
