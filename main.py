@@ -82,6 +82,7 @@ chunks = [cleanDocs[i:i+chunk] for i in range(0,len(cleanDocs),chunk)]
 print(posDocs)
 print(cleanDocs)
 """
+
 1-Al-Fatihah 2-Al-Baqarah 3-Al-'Imran 4-An-Nisa' 5-Al-Ma'idah 6-Al-An'am 7-Al-A'raf 8-Al-Anfal 9-Al-Bara'at / At-Taubah 10-Yunus 11-Hud 12-Yusuf 13-Ar-
 Ra'd 14-Ibrahim 15-Al-Hijr 16-An-Nahl 17-Bani Isra'il 18-Al-Kahf 19-Maryam 20-Ta Ha 21-Al-Anbiya' 22-Al-Hajj 23-Al-Mu'minun 24-An-Nur 25-Al-Furqan 26-Ash-
 Shu'ara' 27-An-Naml 28-Al-Qasas 29-Al-'Ankabut 30-Ar-Rum 31-Luqman 32-As-Sajdah 33-Al-Ahzab 34-Al-Saba' 35-Al-Fatir 36-Ya Sin 37-As-Saffat 38-Sad 39-Az-
