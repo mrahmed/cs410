@@ -5,6 +5,7 @@ from gensim import corpora, models
 import gensim
 import string
 import re
+import nltk
 
 def parseXml(xmlFile):
     """
@@ -68,16 +69,18 @@ xmlFile = "English-Yusuf-Ali.xml"
 docs = parseXml(xmlFile)
 docs.insert(0, "")# #shift index to match with chapter index
 cleanDocs= []
+posDocs= []
 for x in range(1, 114):
     cleanDoc = clean(docs[x])
     cleanDoc = cleanDoc[1:]  # remove first element which is index
+    posDocs.extend(nltk.pos_tag(cleanDoc))
     cleanDocs.extend(cleanDoc)
 n = 10.0 # number of chunks to generate
 chunk = int(round(len(cleanDocs)/n))
 chunks = [cleanDocs[i:i+chunk] for i in range(0,len(cleanDocs),chunk)]
 #print(cleanDocs)
-print(chunks)
-
+print(posDocs)
+print(cleanDocs)
 """
 1-Al-Fatihah 2-Al-Baqarah 3-Al-'Imran 4-An-Nisa' 5-Al-Ma'idah 6-Al-An'am 7-Al-A'raf 8-Al-Anfal 9-Al-Bara'at / At-Taubah 10-Yunus 11-Hud 12-Yusuf 13-Ar-
 Ra'd 14-Ibrahim 15-Al-Hijr 16-An-Nahl 17-Bani Isra'il 18-Al-Kahf 19-Maryam 20-Ta Ha 21-Al-Anbiya' 22-Al-Hajj 23-Al-Mu'minun 24-An-Nur 25-Al-Furqan 26-Ash-
