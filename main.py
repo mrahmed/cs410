@@ -6,6 +6,7 @@ import gensim
 import string
 import re
 import nltk
+from nltk.stem.wordnet import WordNetLemmatizer
 import pyLDAvis.gensim
 
 def parseXml(xmlFile):
@@ -57,8 +58,9 @@ def clean(doc):
     """
     i = 0
     stop = set(stopwords.words('english')) #stop words
-    allow = ["lord"]
+    allow = [""] #add words to keep which are removed by stopwords
     punc = set(string.punctuation)
+    lemmatize = WordNetLemmatizer()
     moreStop = ["ye", "shall", "thee", "thy", "thou", "say", "said", "us", "indeed", "may", "hath"]
     for word in moreStop:
         stop.add(word) #add more stop words
@@ -69,6 +71,7 @@ def clean(doc):
     cleanDoc = re.sub('(?<! )(?=[.,;!?()])|(?<=[.,;!?()])(?! )', r' ', cleanDoc)
     cleanDoc = regex.sub('', cleanDoc) #remove punctuation
     cleanDoc = ''.join(i for i in cleanDoc if not i.isdigit()) #remove remove any digit
+    #cleanDoc = " ".join(lemmatize.lemmatize(i) for i in cleanDoc.split())
     cleanDoc = cleanDoc.split() #split into list
     cleanDoc = [word for word in cleanDoc if (word not in stop or word in allow)]
     cleanDoc = [word for word in cleanDoc if word not in punc]
@@ -84,8 +87,19 @@ def applyLDA(cleanDocs, k, p):
     dictionary = corpora.Dictionary(cleanDocs)
     corpus = [dictionary.doc2bow(doc) for doc in cleanDocs]
     model = gensim.models.ldamodel.LdaModel(corpus, num_topics = k, id2word = dictionary, passes = p)
-
     return(model)
+
+def applyPOS(cleanDocs):
+    #POS filtering
+    filter =["JJ", "JJR", "JJS", "NN", "NNS", "NNP", "NNPS", "PRP", "PRP$", "RB", "RBR", "RBS", "VB", "VBD", "VBG", "VBN", "VBP", "VBZ", "WP", "WP$", "WRB"]
+    cleandocs = filterByPOS(nltk.pos_tag(cleanDocs), filter)
+    return (cleanDocs)
+
+def createChunks(cleanDocs, n):
+    #create chuncks of equal size
+    chunk = int(round(len(cleanDocs)/n))
+    chunks = [cleanDocs [i: i + chunk] for i in range(0, len(cleanDocs), chunk)]
+    return (chunks)
 
 def applyLDAvis(cleanDocs, k, p):
     """
@@ -97,7 +111,7 @@ def applyLDAvis(cleanDocs, k, p):
 
     dictionary = corpora.Dictionary(cleanDocs)
     corpus = [dictionary.doc2bow(doc) for doc in cleanDocs]
-    model = gensim.models.ldamodel.LdaModel(corpus, num_topics=10, id2word=dictionary, passes=30)
+    model = gensim.models.ldamodel.LdaModel(corpus, num_topics=k, id2word=dictionary, passes=p)
     model.save('topic.model')
     lda = models.LdaModel.load('topic.model')
     data = pyLDAvis.gensim.prepare(lda, corpus, dictionary)
@@ -107,18 +121,25 @@ if __name__ == '__main__':
     xmlFile = "English-Yusuf-Ali.xml"
     docs = parseXml(xmlFile)
     docs.insert(0, "")# #shift index to match with chapter index
+
+    #initialize
     cleanDocs= []
-    posDocs= []
-    for x in range(110, 114):
+    chunkSize = 100.0 # number of chunks to generate
+    k = 10 # number of topic
+    iterations = 30 # number of iterations
+    chapterBegin = 1 #chapter number to start with
+    chapterEnd = 114 # chapter number to end with
+
+    for x in range(chapterBegin, chapterEnd):
         cleanDoc = clean(docs[x])
         cleanDoc = cleanDoc[1:]  # remove first element which is index
         cleanDocs.extend(cleanDoc)
-    filter =["JJ", "JJR", "JJS", "NN", "NNS", "NNP", "NNPS", "PRP", "PRP$", "RB", "RBR", "RBS", "VB", "VBD", "VBG", "VBN", "VBP", "VBZ", "WP", "WP$", "WRB"]
-    cleandocs = filterByPOS(nltk.pos_tag(cleanDoc), filter)
-    n = 100.0 # number of chunks to generate
-    chunk = int(round(len(cleanDocs)/n))
-    chunks = [cleanDocs
-    [i: i + chunk] for i in range(0, len(cleanDocs), chunk)]
-    cleanDocs = chunks
-    applyLDAvis(cleanDocs, 10, 30)
+
+    # apply POS filtering
+    cleanDocs = applyPOS(cleanDocs)
+
+    # create chunks of equal size
+    cleanDocs = createChunks(cleanDocs,chunkSize)
+    # apply LDA and create display
+    applyLDAvis(cleanDocs, k, iterations)
 
