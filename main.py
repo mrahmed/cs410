@@ -36,10 +36,15 @@ def parseXml(xmlFile):
        doc = doc.replace("\t", "")
        doc = doc.replace(".", ". ")
        doc = doc.replace("-", "- ")
+       #will include this replacement of text section in "clean" more elegantly
        doc = doc.replace("`and", " and")
        doc = doc.replace("`that", " that")
        doc = doc.replace("`iddat", " iddat")
        doc = doc.replace("`umra", " umra")
+       doc = doc.replace("`partners`", " partners ")
+       doc = doc.replace("re-", "re")
+       doc = doc.replace("`now`", " now")
+       doc = doc.replace("`verily", " verily")
 
        docs.append(doc)
     return(docs)
