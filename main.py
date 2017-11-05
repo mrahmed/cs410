@@ -36,6 +36,10 @@ def parseXml(xmlFile):
        doc = doc.replace("\t", "")
        doc = doc.replace(".", ". ")
        doc = doc.replace("-", "- ")
+       doc = doc.replace("`and", " and")
+       doc = doc.replace("`that", " that")
+       doc = doc.replace("`iddat", " iddat")
+       doc = doc.replace("`umra", " umra")
 
        docs.append(doc)
     return(docs)
