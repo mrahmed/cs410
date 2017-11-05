@@ -35,6 +35,7 @@ def parseXml(xmlFile):
        doc = doc.replace("\n", "")
        doc = doc.replace("\t", "")
        doc = doc.replace(".", ". ")
+       doc = doc.replace("-", "- ")
 
        docs.append(doc)
     return(docs)
@@ -61,7 +62,9 @@ def clean(doc):
     allow = [""] #add words to keep which are removed by stopwords
     punc = set(string.punctuation)
     lemmatize = WordNetLemmatizer()
-    moreStop = ["ye", "shall", "thee", "thy", "thou", "say", "said", "us", "indeed", "may", "hath"]
+    moreStop = []
+    moreStop.extend(["ye", "shall", "thee", "thy", "thou", "say"])
+    moreStop.extend(["said", "us", "indeed", "may", "hath"])
     for word in moreStop:
         stop.add(word) #add more stop words
 
@@ -91,7 +94,11 @@ def applyLDA(cleanDocs, k, p):
 
 def applyPOS(cleanDocs):
     #POS filtering
-    filter =["JJ", "JJR", "JJS", "NN", "NNS", "NNP", "NNPS", "PRP", "PRP$", "RB", "RBR", "RBS", "VB", "VBD", "VBG", "VBN", "VBP", "VBZ", "WP", "WP$", "WRB"]
+    filter =[]
+    filter.extend(["JJ", "JJR", "JJS", "NN", "NNS", "NNP", "NNPS"])
+    filter.extend(["PRP", "PRP$", "RB", "RBR", "RBS", "VB", "VBD"])
+    filter.extend(["VBG", "VBN", "VBP", "VBZ", "WP", "WP$", "WRB"])
+    filter.extend(["IN", "LS", "MD", "WDH"])
     cleandocs = filterByPOS(nltk.pos_tag(cleanDocs), filter)
     return (cleanDocs)
 
@@ -125,7 +132,7 @@ if __name__ == '__main__':
     #initialize
     cleanDocs= []
     chunkSize = 100.0 # number of chunks to generate
-    k = 10 # number of topic
+    k = 10 # number of topics
     iterations = 30 # number of iterations
     chapterBegin = 1 #chapter number to start with
     chapterEnd = 114 # chapter number to end with
@@ -142,4 +149,3 @@ if __name__ == '__main__':
     cleanDocs = createChunks(cleanDocs,chunkSize)
     # apply LDA and create display
     applyLDAvis(cleanDocs, k, iterations)
-
