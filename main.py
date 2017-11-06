@@ -35,16 +35,7 @@ def parseXml(xmlFile):
        doc = doc.replace("\n", "")
        doc = doc.replace("\t", "")
        doc = doc.replace(".", ". ")
-       doc = doc.replace("-", "- ")
-       #will include this replacement of text section in "clean" more elegantly
-       doc = doc.replace("`and", " and")
-       doc = doc.replace("`that", " that")
-       doc = doc.replace("`iddat", " iddat")
-       doc = doc.replace("`umra", " umra")
-       doc = doc.replace("`partners`", " partners ")
        doc = doc.replace("re-", "re")
-       doc = doc.replace("`now`", " now")
-       doc = doc.replace("`verily", " verily")
 
        docs.append(doc)
     return(docs)
@@ -87,6 +78,8 @@ def clean(doc):
     cleanDoc = cleanDoc.split() #split into list
     cleanDoc = [word for word in cleanDoc if (word not in stop or word in allow)]
     cleanDoc = [word for word in cleanDoc if word not in punc]
+    cleanDoc = [word.replace("-", "") if word[0] == "-" or word[-1] == "-" else word for word in cleanDoc]
+    cleanDoc = [word.replace("`", "") if word[0] == "`" or word[-1] == "`" else word for word in cleanDoc]
     return(cleanDoc)
 
 def applyLDA(cleanDocs, k, p):
