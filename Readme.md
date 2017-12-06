@@ -15,7 +15,7 @@ In `main.py`, we apply a probabilistic statistical language model (LDA) to disco
   * Punctuation removal
   * Special character removal
   * Apply LDA model using a number of topics and iterations
-  * Visualize the output using LDAviz
+- Visualize the output using LDAviz
 
 ## References
 
