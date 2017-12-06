@@ -18,4 +18,5 @@ In `main.py`, we apply a probabilistic statistical language model (LDA) to disco
 - Visualize the output using LDAviz
 
 ## References
+
 - https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
