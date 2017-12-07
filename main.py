@@ -66,17 +66,6 @@ def clean(doc):
     cleanDoc = [word.replace("`", "") if ("`" in [word[0], word[-1]]) else word for word in cleanDoc]
     return(cleanDoc)
 
-def applyLDA(cleanDocs, k, p):
-    """
-    apply the model to the data: construct doc-term matrix,
-    convert dictionary into bag-of-words and apply the LDA model.
-    """
-
-    dictionary = corpora.Dictionary(cleanDocs)
-    corpus = [dictionary.doc2bow(doc) for doc in cleanDocs]
-    model = gensim.models.ldamodel.LdaModel(corpus, num_topics = k, id2word = dictionary, passes = p)
-    return(model)
-
 def applyPOS(cleanDocs):
     """
     apply POS filtering
@@ -110,7 +99,7 @@ def applyLDAvis(cleanDocs, k, p):
     model.save('topic.model')
     lda = models.LdaModel.load('topic.model')
     data = pyLDAvis.gensim.prepare(lda, corpus, dictionary)
-    pyLDAvis.save_html(data,str(k)+'vis.html')
+    pyLDAvis.save_html(data,'vis/'+str(k)+'vis.html')
 
 if __name__ == '__main__':
     xmlFile = "English-Yusuf-Ali.xml"
@@ -134,4 +123,4 @@ if __name__ == '__main__':
 
     # apply LDA and create display
     for t in range(10,k):
-        applyLDAvis(cleanDocs, k, iterations)
+        applyLDAvis(cleanDocs, t, iterations)
