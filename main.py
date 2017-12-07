@@ -109,7 +109,7 @@ def applyLDAvis(cleanDocs, k, p):
     model.save('topic.model')
     lda = models.LdaModel.load('topic.model')
     data = pyLDAvis.gensim.prepare(lda, corpus, dictionary)
-    pyLDAvis.save_html(data,'vis.html')
+    pyLDAvis.save_html(data,str(k)+'vis.html')
 
 if __name__ == '__main__':
     xmlFile = "English-Yusuf-Ali.xml"
@@ -117,7 +117,7 @@ if __name__ == '__main__':
 
     #initialize
     chunkSize = 100.0 # number of chunks to generate
-    k = 11            # number of topics
+    k = 50            # number of topics
     iterations = 20   # number of iterations
 
     cleanDocs= []
@@ -132,4 +132,5 @@ if __name__ == '__main__':
     cleanDocs = createChunks(cleanDocs, chunkSize)
 
     # apply LDA and create display
-    applyLDAvis(cleanDocs, k, iterations)
+    for t in range(10,k):
+        applyLDAvis(cleanDocs, k, iterations)
