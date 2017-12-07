@@ -45,7 +45,8 @@ def clean(doc):
     stop = set(stopwords.words('english'))
     moreStop = ["ye", "shall", "thee", "thy", "thou", "say", "one"]
     moreStop.extend(["said", "us", "indeed", "may", "hath", "two"])
-    moreStop.extend(["allah", "lord", "would", "unto"])
+    moreStop.extend(["allah", "lord", "would", "unto", "also", "could"])
+    moreStop.extend(["things", "ah"])
     for word in moreStop:
         stop.add(word)
 
