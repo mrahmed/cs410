@@ -21,7 +21,7 @@ In `main.py`, we apply a probabilistic statistical language model (LDA) to disco
 
 Because the chapters are of varrying lengths (some of them are few senetences and others are many paragraphs), all chapters had to be concatenated into a single unit of text and then re-partitioned into a nearly equal sized chuncks of text. To perform this transformation, `createChunks` function was used. Since there are **114** chapters in the Quran, **100** chunks was close enough to the original number of chapters.
 
-__**note:**__ After experimenting with the number of chunks, **100** was determined to provide the most optimal results.
+**Note:** After experimenting with the number of chunks, **100** was determined to provide the most optimal results.
 
 
 ### Parsing the data
