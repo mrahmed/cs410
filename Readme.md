@@ -6,7 +6,7 @@ In `main.py`, we apply a probabilistic statistical language model (LDA) to disco
 
 `main.py` perfoms the following actions:
 
-- Parse the date from the XML file
+- Parse the data XML file
 - Clean the data by:
   * Tokanization
   * Lower casing
