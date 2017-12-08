@@ -38,11 +38,15 @@ The data is parsed in the following way:
 
 ### Cleaning the data
 
-Most of the work is happening in this phase. There are a number of functions knit together to complete this task. There are listed in the order they are used:
+Most of the work is happening in this phase. There are a number of functions knit together to complete this task:
 
-- `clean`: This function does most of the work of cleaning the documents.
+- `clean` function does most of the work of cleaning the documents. It removes all punctuation, digits, stop words and special characters used to indicate Arabic phonetic guidance marks.
+- `applyPOS` and `filterByPOS` are used to clean parts of speech.
 
 
 ## API References
 
-- https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
+- [Gensim Library](https://radimrehurek.com/gensim/apiref.html)
+- [Removing Punctuation using Regex](https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex)
+- [NLTK Library](http://www.nltk.org/api/nltk.html)
+- [pyLDAviz](https://github.com/bmabey/pyLDAvis)
