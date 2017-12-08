@@ -38,10 +38,16 @@ The data is parsed in the following way:
 
 ### Cleaning the data
 
-Most of the work is happening in this phase. There are a number of functions knit together to complete this task:
+Most of the document cleaning work is happening in this phase. There are a number of functions used together to complete the cleaning task:
 
 - `clean` function does most of the work of cleaning the documents. It removes all punctuation, digits, stop words and special characters used to indicate Arabic phonetic guidance marks.
 - `applyPOS` and `filterByPOS` are used to clean parts of speech.
+
+### Applying LDA Model and Visualize the Topics
+
+`applyLDAviz` function is used to apply the LDA model to the data and visualize the topics. We generated 40 models with topic numbers ranging from **10** to **49**. All the results are visualized and saved in the `models` folder. We have added an iframe slider to make it more convenient for users to explore the different models. Use `models\quranTopicModelSlider.html` to explore the models. Drag the slide to navigate through the models.
+
+![Screenshot of the iframe slider](https://github.com/mrahmed/cs410/iframeSlider.PNG)
 
 
 ## API References
