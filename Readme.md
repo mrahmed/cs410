@@ -45,7 +45,7 @@ Most of the document cleaning work is happening in this phase. There are a numbe
 
 ### Applying LDA Model and Visualize the Topics
 
-`applyLDAviz` function is used to apply the LDA model to the data and visualize the topics. We generated 40 models with topic numbers ranging from **10** to **49**. All the results are visualized and saved in the `models` folder. We have added an iframe slider to make it more convenient for users to explore the different models. Use `models\quranTopicModelSlider.html` to explore the models. Drag the slide to navigate through the models.
+`applyLDAviz` function is used to apply the LDA model to the data and visualize the topics. We generated 40 models with topic numbers ranging from **10** to **49**. All the results are visualized and saved in the `models` folder. We have added an iframe slider to make it more convenient for users to explore the different models. Use `models\quranTopicModelSlider.html` to explore the models. 
 
 ![screenshot of the iframe slider](https://github.com/mrahmed/cs410/blob/master/iframeSlider.PNG)
 
