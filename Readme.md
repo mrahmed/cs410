@@ -26,13 +26,13 @@ Because the chapters are of varrying lengths (some of them are few sentences and
 
 ### Parsing the data
 
-The dataset is contained in a single XML file, `English-Yusuf-Ali.xml`. The XML root includes **114** chapters which in turn include a varrying number of verses. Each verse is a single unit of text data. `ParseXML` function is used to parse the data. It also removes some special characters (`\t` and `\n`) as well as re-formats the occurnace of other characters (`.` and `-`). This cleanning and reformatting takes place during the parsing phase because it is not possible to do during the tokenization phase as it would change the form of some words. For instance, in the raw format of the data, there is no space between a `.` and the word following it (example: "yesterday.He"). It is important to add a space after the period to avoid having "yesterday.He" as a single word during the tokenization phase.
+The dataset is contained in a single XML file, `English-Yusuf-Ali.xml`. The XML root includes **114** chapters which in turn include a varrying number of verses. Each verse is a single unit of text data. `ParseXML` function is used to parse the data. It also removes some special characters (`\t` and `\n`) as well as re-formats the occurnace of other characters (`.` and `-`). This cleanning and reformatting takes place during the parsing phase because it is not possible to do during the tokenization phase as it would change the form of some words. For instance, in the raw format of the data, there is no space between a `.` and the word following it (example: "*yesterday.He*"). It is important to add a space after the period to avoid having "*yesterday.He*" as a single word during the tokenization phase.
 
 The steps to parsing the data are:
 
 - Get the root of the XML tree
-- Iterate through all childern chapters
-  * For each child, iterate through and concatenate its childern verses to form a document represtening a complete chapter
+- Iterate through all children chapters
+  * For each child, iterate through and concatenate its children verses to form a document represtening a complete chapter
 - Return all documents (chapters), a total of **114** chapters
 
 
