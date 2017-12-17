@@ -2,7 +2,10 @@ import xml.etree.ElementTree as ET
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from gensim import corpora, models
+import warnings
+warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim')
 import gensim
+
 import string
 import re
 import nltk
@@ -87,7 +90,7 @@ def createChunks(cleanDocs, n):
     chunks = [cleanDocs [i: i + chunk] for i in range(0, len(cleanDocs), chunk)]
     return (chunks)
 
-def applyLDAvis(cleanDocs, k, p):
+def applyLDAvis(cleanDocs, k, p, setNum):
     """
     apply the model to the data: construct doc-term matrix,
     convert dictionary into bag-of-words, apply the LDA model.
@@ -99,7 +102,8 @@ def applyLDAvis(cleanDocs, k, p):
     model.save('topic.model')
     lda = models.LdaModel.load('topic.model')
     data = pyLDAvis.gensim.prepare(lda, corpus, dictionary)
-    pyLDAvis.save_html(data,'vis/'+str(k)+'vis.html')
+    whichVis = str(setNum)
+    pyLDAvis.save_html(data,'vis'+whichVis+'/'+str(k)+'vis.html')
 
 if __name__ == '__main__':
     xmlFile = "English-Yusuf-Ali.xml"
@@ -107,20 +111,23 @@ if __name__ == '__main__':
 
     #initialize
     chunkSize = 100.0 # number of chunks to generate
-    k = 50            # number of topics
+    k = 51            # number of topics
     iterations = 20   # number of iterations
 
-    cleanDocs= []
+    cleanDocs1= []
+    cleanDocs2 = []
     for chapter in docs:
         cleanDoc = clean(chapter)
-        cleanDocs.extend(cleanDoc)
+        cleanDoc = applyPOS(cleanDoc)
+        # extend content to make chunks later
+        cleanDocs1.extend(cleanDoc)
+        # cleanDocs2 contain individual chunks
+        cleanDocs2.append(cleanDoc)
 
     # apply POS filtering
-    cleanDocs = applyPOS(cleanDocs)
-
     # create chunks of equal size
-    cleanDocs = createChunks(cleanDocs, chunkSize)
-
+    cleanDocs1 = createChunks(cleanDocs1, chunkSize)
     # apply LDA and create display
-    for t in range(10,k):
-        applyLDAvis(cleanDocs, t, iterations)
+    for t in range(2,k):
+        applyLDAvis(cleanDocs1, t, iterations, 1)
+        applyLDAvis(cleanDocs2, t, iterations, 2)
