@@ -49,7 +49,7 @@ Most of the document cleaning work is happening in this phase. There are a numbe
 
 ![screenshot of the iframe slider `quranTopicModelSlider.html`](https://github.com/mrahmed/cs410/blob/master/images/iframeModelSlider.PNG)
 
-We also added `index.html` to allow users to explore the models in either folder from the same page. Use the check-box to switch between models applied to the original chapters and the equal size chunks of text.
+We also added `index.html` to allow users to explore the models in either folder from the same page. Use the check-box to switch between models applied to the original chapters and models applied to the equal size chunks of text.
 
 ![screenshot of the iframe slider `index.html`](https://github.com/mrahmed/cs410/blob/master/images/indexSlider.PNG)
 
