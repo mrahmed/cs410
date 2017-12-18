@@ -47,11 +47,11 @@ Most of the document cleaning work is happening in this phase. There are a numbe
 
 `applyLDAviz` function is used to apply the LDA model to the data and visualize the topics. We generated **49** models with topic numbers ranging from **2** to **50**. All the results are visualized and saved in the `vis1` and `vis1` folders. `vis2` contains the models that were applied to the original chapters; while `vis1` contains the models applied to the equal size chunks of text. We have added an iframe slider in each folder to make it more convenient for users to explore the different models. Use `vis#\quranTopicModelSlider.html` to explore the models in each folder. 
 
-![screenshot of the iframe slider `quranTopicModelSlider.html`](https://github.com/mrahmed/cs410/blob/master/images/iframeModelSlider.PNG)
+![screenshot of the iframe slider `quranTopicModelSlider.html`](images/iframeModelSlider.PNG)
 
 We also added `index.html` to allow users to explore the models in either folder from the same page. Use the check-box to switch between models applied to the original chapters and models applied to the equal size chunks of text.
 
-![screenshot of the iframe slider `index.html`](https://github.com/mrahmed/cs410/blob/master/images/indexSlider.PNG)
+![screenshot of the iframe slider `index.html`](images/indexSlider.PNG)
 
 ## API References
 
