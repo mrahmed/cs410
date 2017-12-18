@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+
+		html {
+		    zoom: 1.0;
+    		-moz-transform: scale(0.8);
+    		-webkit-transform: scale(0.8);
+    		transform: scale(0.8);
+		}
+
+label input {
+  display: none;/* <-- hide the default checkbox */
+}
+label span {/* <-- style the artificial checkbox */
+  height: 15px;
+  width: 15px;
+  border: 1px solid grey;
+  display: inline-block;
+  position: relative;
+}
+[type=checkbox]:checked + span:before {/* <-- style its checked state..with a ticked icon */
+  content: '\2714';
+  position: absolute;
+  top: -5px;
+  left: 0;
+}
+		input[type=checkbox] {
+			transform: scale(3.0);
+		}
+
+		body {
+			background-color: white;
+		}
+
+		h1 {
+			color: black;
+			text-align: center;
+		}
+
+		p {
+			font-family: verdana;
+			font-size: 20px;
+		}
+
+		#slidecontainer {
+			width: 100%;
+		}
+
+		.views {
+		   allowTransparency: true;
+		   scrolling: no;
+		   frameborder: 0;
+		   display: none;
+		   width: 100%;
+		   height: 1000px;
+		}
+
+		.slider {
+			-webkit-appearance: none;
+			width: 100%;
+			height: 15px;
+			background: #d3d3d3;
+			outline: none;
+			opacity: 0.7;
+			-webkit-transition: .2s;
+			transition: opacity .2s;
+		}
+
+		.slider:hover {
+			opacity: 1;
+		}
+
+		.slider::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 25px;
+			height: 25px;
+			background: #4CAF50;
+			cursor: pointer;
+		}
+
+		.slider::-moz-range-thumb {
+			width: 25px;
+			height: 25px;
+			background: #4CAF50;
+			cursor: pointer;
+		}
+
+body {}
+.container {
+  width:250px;
+  position:relative;
+  overflow:hidden;
+}
+
+.title{
+  line-height:2em;
+  font-family:arial;
+  text-align:left;
+  float:left;
+  font-family: Verdana;
+  font-size: 14px;
+  color: #555555;
+  letter-spacing: .25px;
+
+}
+
+.title:before {
+ content: "";
+ // background: url("icon.jpg") no-repeat;
+ border-bottom:2px solid #000;
+ width: 40px;
+ height: 20px;
+ float: left;
+ margin: -6px 5px 0 0;
+  font-family: Verdana;
+  font-size: 14px;
+  color: #555555;
+  letter-spacing: .25px;
+
+
+}
+
+.title:after {
+ content: "";
+ // background: url("icon.jpg") no-repeat;
+ border-bottom:2px solid #000;
+ width:85%;
+ height: 20px;
+ margin: -6px 0px 0 5px;
+ position:absolute;
+  font-family: Verdana;
+  font-size: 14px;
+  color: #555555;
+  letter-spacing: .25px;
+
+
+}
+
+H1 {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #006600;
+    letter-spacing: 1.4px;
+    border-bottom: solid 1px #006600;
+    text-transform: uppercase;
+}
+H2 {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 1.2px;
+    color: #009900;
+}
+P, BLOCKQUOTE {
+    font-family: Verdana;
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+    letter-spacing: .25px;
+}
+BLOCKQUOTE {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #444444;
+    letter-spacing: 1.25px;
+    line-height: 1.5;
+    background: #EEEEEE;
+    padding: 5px;
+    margin: auto 15px;
+}
+A {
+    color: #006600;
+}
+ABBR {
+    border-bottom: dotted 1px #006600;
+}
+	</style>
+</head>
+<body>
+<span class="title">Quran Topic Models</span>
+  <br style="clear:both">
+CS410 Final Project (Fall 2017)<br>
+<br>
+Muhammad Ahmed<br>
+Kahtan Al Jewary
+
+
+	<p>Drag the Slider to Select the Model<span style="padding-left:250px;">
+
+  <label>
+  <input type='checkbox' id="box">
+  <span></span>
+  Check to use text chunks of equal size as documents. Uncheck to use original chapters as documents.
+</label>
+
+
+</p>
+
+	<div id="slidecontainer">
+	  <input type="range" min="2" max="50" value="2" class="slider" id="myRange">
+	  <p>Number of Topics: <span id="demo"></span></p></input>
+	</div>
+
+	<div id="vis"></div>
+	<script>
+	    var j = 1;
+		var toAdd = document.getElementById("vis");
+		for(var i=2; i <= 50; i++){
+		   var newiFrame = document.createElement('iframe');
+		   newiFrame.src = 'vis1/' + i + 'vis.html';
+		   newiFrame.id = '1' + i + 'vis';
+		   newiFrame.classList.add('views');
+		   var newiFrame2 = document.createElement('iframe');
+		   newiFrame2.src = 'vis2/' + i + 'vis.html';
+		   newiFrame2.id = '2' + i + 'vis';
+		   newiFrame2.classList.add('views');
+		   toAdd.appendChild(newiFrame);
+		   toAdd.appendChild(newiFrame2);
+		}
+
+		var slider = document.getElementById("myRange");
+		var output = document.getElementById("demo");
+		var checkBox = document.getElementById("box");
+		output.innerHTML = slider.value;
+		var showFrameNumber = 2;
+		var curr = document.getElementById('12vis');
+		curr.style.display = "block";
+
+		var whichVis = 1;
+
+		checkBox.onchange = function() {
+			if (checkBox.checked == true) { whichVis = 2 }
+			else { whichVis = 1 }
+			curr.style.display = "none";
+			var next = document.getElementById(whichVis.toString() + showFrameNumber.toString() + 'vis');
+			next.style.display = "block";
+			curr = next;
+		}
+
+
+		slider.oninput = function() {
+			curr.style.display = "none";
+			showFrameNumber = this.value;
+			var next = document.getElementById(whichVis.toString() + showFrameNumber.toString() + 'vis');
+			output.innerHTML = slider.value;
+			next.style.display = "block";
+			curr = next;
+		}
+	</script>
+</body>
+</html>
