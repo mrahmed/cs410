@@ -121,7 +121,7 @@ if __name__ == '__main__':
         cleanDoc = applyPOS(cleanDoc)
         # extend content to make chunks later
         cleanDocs1.extend(cleanDoc)
-        # cleanDocs2 contain individual chunks
+        # cleanDocs2 contain individual chapters
         cleanDocs2.append(cleanDoc)
 
     # apply POS filtering
