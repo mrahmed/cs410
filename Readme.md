@@ -81,6 +81,25 @@ In order to use the visualization of the topics:
 
 **Note:** `index.html`, `vis1` and `vis2` should be saved in the same dirctory.
 
+### A Use Case
+
+A very immediate use case is to:
+- Explore the topics using the provided visualization
+- Find a topic of interest
+- Use certain topic words to form a search string
+- Perform a web search on this string to explore further details on the topic
+
+
+To experience this use case, go through these steps to discover a story of Moses:
+
+- Make sure you check the checkbox that allows you to switch to *equal size chunks of text*.
+- Move the topic slider to select the model with **37** topics.
+- Select topic number **10**
+- Set lambda value to **1**
+- Form a search string using the list topic words `"moses, pharaoh, sorcerers"`
+- Do a web search on Google using this search string
+
+The results will come back with pages that further discuss this story of Moses.
 
 ## Team Contribution
 
