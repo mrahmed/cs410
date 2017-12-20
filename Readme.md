@@ -96,7 +96,7 @@ To experience this use case, go through these steps to discover a story of Moses
 - Move the topic slider to select the model with **37** topics.
 - Select topic number **10**
 - Set lambda value to **1**
-- Form a search string using the list topic words `"moses, pharaoh, sorcerers"`
+- Form a search string using the listed topic words `"moses, pharaoh, sorcerers"`
 - Do a web search on Google using this search string
 
 The results will come back with pages that further discuss this story of Moses.
