@@ -2,9 +2,9 @@
 
 In `main.py`, we apply a probabilistic language model (LDA) to discover topics in the Quran. The Quran consists of 114 chapters which in turn
 consist of verses. In the Quran, a topic could repeat in different chapters and sometimes in different contexts. While a topic starts in one verse, another
-topic may start immediately in the next verse. Thus, a topic may start in the earlier chapters of Quran and may end in the middle or last chapters of Quran. This presents a challenge to the readers who would like to familiarize themselves with the topics discussed in the Quran. A reader may need to read the Quran several times in order to develop basic knowledge of the Quranic topics.
+topic may start immediately in the next verse. Thus, a topic may start in the earlier chapters of the Quran and may end in the middle or last chapters of the Quran. This presents a challenge to the readers who would like to familiarize themselves with the topics discussed in the Quran. A reader may need to read the Quran several times in order to develop basic knowledge of the Quranic topics.
 
-The objective of this project is to apply a topic model, LDA, to the Quran text. The result of the project is a visualization that allows users to explore the Quranic topics represented as groups of words. Users may use this visualization to explore the discovered topics. Since topics are represented by groups of words, users can select certain topic words to form search strings which then can be used on web search engines, like Google, to find further details on the topic.
+The objective of this project is to apply a topic model, LDA, to the Quran text. The result of the project is a visualization that allows users to explore the Quranic topics represented as groups of words. Since topics are represented by groups of words, users can select certain topic words to form search strings which then can be used on web search engines, like Google, to find further details on the topic.
 
 For further details on the project, please read [`docs/project_report.pdf`](docs/project_report.pdf).
 
@@ -62,14 +62,34 @@ We also added `index.html` to allow users to explore the models in either folder
 
 ### Visual Definitions
 
-Below is a simple list of definitions of LDAvis visualization:
+Below is a simple list of LDAviz definitions:
 
 - The size of a bubble reflects the number of words in a topic.
 - The distance between bubbles reflects how different or similar two topics are.
 - Hovering over a word highlights other topics the word is a member of.
 
-For richer details on LDAvis visual definitions, please read section **Definitions of Visual Elements in LDAvis** of [`docs/project_report.pdf`](docs/project_report.pdf).
+For richer details on LDAvis visual definitions, please read the section **Definitions of Visual Elements in LDAvis** of [`docs/project_report.pdf`](docs/project_report.pdf).
 
+
+## Software Usage
+
+In order to use the visualization of the topics:
+
+- Download this repository to your desktop
+- Unzip the content of the repository
+- Open index.html to start exploring the topics
+
+**Note:** `index.html`, `vis1` and `vis2` should be saved in the same dirctory.
+
+
+## Team Contribution
+
+Names of team members:
+- Muhammad Ahmed
+- Kahtan Al Jewary
+
+The team members completed the project concurrently in a balanced manner and without deliberate assignments of the project tasks. Every team member have spent equal efforts on this project.
+ 
 
 ## API References
 
