@@ -97,9 +97,9 @@ To experience this use case, go through these steps to discover a story of Moses
 - Select topic number **10**
 - Set lambda value to **1**
 - Form a search string using the listed topic words `"moses, pharaoh, sorcerers"`
-- Do a web search on Google using this search string
+- Perform a web search on Google using this search string
 
-The results will come back with pages that further discuss this story of Moses.
+The search will return pages that further discuss this story of Moses.
 
 ## Team Contribution
 
