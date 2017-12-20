@@ -67,6 +67,8 @@ Below is a simple list of LDAviz definitions:
 - The size of a bubble reflects the number of words in a topic.
 - The distance between bubbles reflects how different or similar two topics are.
 - Hovering over a word highlights other topics the word is a member of.
+- λ controls how the terms are ranked for each topic, where terms are listed in decreasing of relevance. where the relevance of term w     to topic t is defined as λ × p(w|t) + (1- λ) × p(w|t) / p(w) . Values of λ near 1 give high relevance rankings to frequent terms
+  within a given topic, whereas values of λ near zero give high relevance rankings to exclusive terms within a topic.
 
 For richer details on LDAvis visual definitions, please read the section **Definitions of Visual Elements in LDAvis** of [`docs/project_report.pdf`](docs/project_report.pdf).
 
