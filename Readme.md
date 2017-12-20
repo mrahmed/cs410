@@ -58,7 +58,7 @@ Most of the document cleaning work is happening in this phase. There are a numbe
 
 We also added `index.html` to allow users to explore the models in either folder from the same page. Use the check-box to switch between models applied to the original chapters and models applied to the equal size chunks of text.
 
-![screenshot of the iframe slider `index.html`](images/indexSlider.PNG)
+![screenshot of the iframe slider `index.html`](images/slider_illustrated.png)
 
 ### Visual Definitions
 
