@@ -1,6 +1,13 @@
 ## Apply LDA Topic Model to Quranic Text
 
-In `main.py`, we apply a probabilistic language model (LDA) to discover topics in the Quran.
+In `main.py`, we apply a probabilistic language model (LDA) to discover topics in the Quran. The Quran consists of 114 chapters which in turn
+consist of verses. In the Quran, a topic could repeat in different chapters and sometimes in different contexts. While a topic starts in one verse, another
+topic may start immediately in the next verse. Thus, a topic may start in the earlier chapters of Quran and may end in the middle or last chapters of Quran. This presents a challenge to the readers who would like to familiarize themselves with the topics discussed in the Quran. A reader may need to read the Quran several times in order to develop basic knowledge of the Quranic topics.
+
+The objective of this project is to apply a topic model, LDA, to the Quran text. The result of the project is a visualization that allows users to explore the Quranic topics represented as groups of words. Users may use this visualization to explore the discovered topics. Since topics are represented by groups of words, users can select certain topic words to form search strings which then can be used on web search engines, like Google, to find further details on the topic.
+
+For further details on the project, please read [`docs/project_report.pdf`](docs/project_report.pdf).
+
 
 ## Script Actions
 
@@ -52,6 +59,17 @@ Most of the document cleaning work is happening in this phase. There are a numbe
 We also added `index.html` to allow users to explore the models in either folder from the same page. Use the check-box to switch between models applied to the original chapters and models applied to the equal size chunks of text.
 
 ![screenshot of the iframe slider `index.html`](images/indexSlider.PNG)
+
+### Visual Definitions
+
+Below is a simple list of definitions of LDAvis visualization:
+
+- The size of a bubble reflects the number of words in a topic.
+- The distance between bubbles reflects how different or similar two topics are.
+- Hovering over a word highlights other topics the word is a member of.
+
+For richer details on LDAvis visual definitions, please read section **Definitions of Visual Elements in LDAvis** of [`docs/project_report.pdf`](docs/project_report.pdf).
+
 
 ## API References
 
