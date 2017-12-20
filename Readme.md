@@ -88,7 +88,7 @@ Names of team members:
 - Muhammad Ahmed
 - Kahtan Al Jewary
 
-The team members completed the project concurrently in a balanced manner and without deliberate assignments of the project tasks. Every team member have spent equal efforts on this project.
+The team members completed the project concurrently in a balanced manner and without deliberate assignments of the project tasks. Team members have spent equal efforts on this project.
  
 
 ## API References
