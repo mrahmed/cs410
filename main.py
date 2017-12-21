@@ -5,7 +5,7 @@ from gensim import corpora, models
 import warnings
 warnings.filterwarnings(action='ignore', category=UserWarning, module='gensim')
 import gensim
-
+import os
 import string
 import re
 import nltk
@@ -104,8 +104,17 @@ def applyLDAvis(cleanDocs, k, p, setNum):
     data = pyLDAvis.gensim.prepare(lda, corpus, dictionary)
     whichVis = str(setNum)
     pyLDAvis.save_html(data,'vis'+whichVis+'/'+str(k)+'vis.html')
+def check_path(path):
+    dir = os.path.dirname(path)
+    if not os.path.exists(dir):
+        os.makedirs(dir)
 
 if __name__ == '__main__':
+
+   # create path if not exits
+    check_path('vis1/')
+    check_path('vis2/')
+
     xmlFile = "English-Yusuf-Ali.xml"
     docs = parseXml(xmlFile)
 
@@ -114,6 +123,7 @@ if __name__ == '__main__':
     k = 51            # number of topics
     iterations = 20   # number of iterations
 
+ 
     cleanDocs1= []
     cleanDocs2 = []
     for chapter in docs:
